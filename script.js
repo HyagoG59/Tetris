@@ -1,39 +1,77 @@
-const jogo = document.getElementById('jogo');
-const pecas = [
-    // ... (Definição das peças em forma de matrizes)
-];
+const canvas = document.getElementById('jogo');
+const ctx = canvas.getContext('2d');
 
-// Variáveis para controle do jogo
-let peçaAtual = null;
-let posicaoX = 0;
-let posicaoY = 0;
-let tempoQueda = 1000; // Tempo de queda em milissegundos
-let intervaloQueda;
-let score = 0;
+const TAMANHO_CELULA = 10;
+let celulasX = canvas.width / TAMANHO_CELULA;
+let celulasY = canvas.height / TAMANHO_CELULA;
 
-// Funções para:
-// * Criar e exibir as peças
-// * Mover as peças (esquerda, direita, baixo)
-// * Girar as peças
-// * Verificar colisões
-// * Eliminar linhas completas
-// * Atualizar pontuação
-// * Controlar o tempo de queda
-// * Game Over
+let cobra = [{ x: 10, y: 10 }];
+let direcao = 'direita';
+let comidaX;
+let comidaY;
+let pontuacao = 0;
 
-// Inicialização do jogo
-startGame();
-
-function startGame(Iniciar) {
-    // ... (Inicializar variáveis, criar primeira peça, iniciar intervalo de queda)
+function desenharCobra() {
+    ctx.fillStyle = '#000';
+    for (let i = 0; i < cobra.length; i++) {
+        ctx.fillRect(cobra[i].x * TAMANHO_CELULA, cobra[i].y * TAMANHO_CELULA, TAMANHO_CELULA, TAMANHO_CELULA);
+    }
 }
 
-// Atualização do jogo em cada intervalo
+function desenharComida() {
+    ctx.fillStyle = '#ff0000';
+    ctx.fillRect(comidaX * TAMANHO_CELULA, comidaY * TAMANHO_CELULA, TAMANHO_CELULA, TAMANHO_CELULA);
+}
+
 function atualizar() {
-    // ... (Mover a peça para baixo, verificar colisões e linhas completas)
+    let cabeca = { x: cobra[0].x, y: cobra[0].y };
+
+    switch (direcao) {
+        case 'cima':
+            cabeca.y--;
+            break;
+        case 'baixo':
+            cabeca.y++;
+            break;
+        case 'esquerda':
+            cabeca.x--;
+            break;
+        case 'direita':
+            cabeca.x++;
+            break;
+    }
+
+    if (cabeca.x < 0 || cabeca.x >= celulasX || cabeca.y < 0 || cabeca.y >= celulasY) {
+        gameOver();
+        return;
+    }
+
+    for (let i = 1; i < cobra.length; i++) {
+        if (cabeca.x === cobra[i].x && cabeca.y === cobra[i].y) {
+            gameOver();
+            return;
+        }
+    }
+
+    cobra.unshift(cabeca);
+
+    if (cabeca.x === comidaX && cabeca.y === comidaY) {
+        pontuacao++;
+        document.getElementById('pontuacao').innerHTML = pontuacao;
+        gerarComida();
+    } else {
+        cobra.pop();
+    }
 }
 
-// Controle de eventos de teclado (setas, espaço)
-document.addEventListener('keydown', function(e) {
-    // ... (Implementar ações para cada tecla pressionada)
-});
+function gerarComida() {
+    comidaX = Math.floor(Math.random() * celulasX);
+    comidaY = Math.floor(Math.random() * celulasY);
+}
+
+function gameOver() {
+    clearInterval(jogoIntervalo);
+    alert('Game Over! Pontuação final: ' + pontuacao);
+}
+
+function iniciarJogo

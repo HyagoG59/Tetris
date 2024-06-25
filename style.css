@@ -1,26 +1,16 @@
 #jogo {
-    width: 320px;
-    height: 640px;
+    background-color: #eee;
     border: 1px solid #ccc;
-    background: #eee;
-    display: flex;
-    flex-wrap: wrap;
 }
 
-.bloco {
-    width: 20px;
-    height: 20px;
-    border: 1px solid #000;
+.cobra {
+    background-color: #000;
+    width: 10px;
+    height: 10px;
 }
 
-/* Estilos para cada peça (I, O, T, S, Z, J, L) */
-.I { background-color: cyan; }
-.O { background-color: yellow; }
-.T { background-color: purple; }
-.S { background-color: green; }
-.Z { background-color: red; }
-.J { background-color: blue; }
-.L { background-color: orange; }
-
-/* Estilos para linhas completas */
-.linha-completa { background-color: #444; }
+.comida {
+    background-color: #ff0000;
+    width: 10px;
+    height: 10px;
+}
