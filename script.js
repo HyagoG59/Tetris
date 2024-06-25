@@ -1,136 +1,39 @@
-// script.js
-
-const grid = document.querySelector('.grid');
-const nextPieceDisplay = document.querySelector('.next-piece');
-const scoreDisplay = document.querySelector('.score');
-const levelDisplay = document.querySelector('.level');
-
-const width = 10;
-const height = 18;
-const blocks = [
-    [1,1,1,1,0],
-    [1,1,1,1,0],
-    [0,1,0,0,1],
-    [1,0,0,0,1],
-    [0,1,1,0,0],
-    [1,1,0,0,0],
-    [0,0,1,1,0]
+const jogo = document.getElementById('jogo');
+const pecas = [
+    // ... (Definição das peças em forma de matrizes)
 ];
 
-let currentPosition = 4;
-let currentRotation = 0;
-let currentPiece = 0;
-let nextRandom = 0;
-let timerId;
+// Variáveis para controle do jogo
+let peçaAtual = null;
+let posicaoX = 0;
+let posicaoY = 0;
+let tempoQueda = 1000; // Tempo de queda em milissegundos
+let intervaloQueda;
 let score = 0;
-let level = 1;
 
-// The Tetrominoes
-const theTetrominoes = [
-    [
-        [1,1,1,1],
-        [0,0,0,0],
-        [0,0,0,0],
-        [0,0,0,0]
-    ],
-    [
-        [0,1,0,0],
-        [1,1,1,0],
-        [0,0,0,0],
-        [0,0,0,0]
-    ],
-    [
-        [0,1,1,0],
-        [0,1,1,0],
-        [0,0,0,0],
-        [0,0,0,0]
-    ],
-    [
-        [1,0,0,0],
-        [1,1,1,0],
-        [0,0,0,0],
-        [0,0,0,0]
-    ],
-    [
-        [1,1,1,0],
-        [0,1,0,0],
-        [0,1,0,0],
-        [0,0,0,0]
-    ],
-    [
-        [0,1,1,1],
-        [0,1,0,0],
-        [0,1,0,0],
-        [0,0,0,0]
-    ],
-    [
-        [1,1,1],
-        [1,0,0],
-        [1,0,0]
-    ]
-];
+// Funções para:
+// * Criar e exibir as peças
+// * Mover as peças (esquerda, direita, baixo)
+// * Girar as peças
+// * Verificar colisões
+// * Eliminar linhas completas
+// * Atualizar pontuação
+// * Controlar o tempo de queda
+// * Game Over
 
-// Display the Tetrominoes in the next piece area
-function displayNextPiece() {
-    nextPieceDisplay.innerHTML = '';
-    const nextTetromino = theTetrominoes[nextRandom];
-    nextTetromino.forEach((row, y) => {
-        row.forEach((value, x) => {
-            const cell = document.createElement('div');
-            cell.classList.add('block');
-            cell.style.backgroundColor = value ? '#000' : '#eee';
-            cell.style.width = '24px';
-            cell.style.height = '24px';
-            nextPieceDisplay.appendChild(cell);
-        });
-    });
-}
+// Inicialização do jogo
+startGame();
 
-// The function that starts the game
 function startGame() {
-    if (timerId) {
-        clearInterval(timerId);
-        timerId = null;
-    } else {
-        displayNextPiece();
-        draw();
-        timerId = setInterval(moveDown, 1000);
-        nextRandom = Math.floor(Math.random() * theTetrominoes.length);
-        displayNextPiece();
-    }
+    // ... (Inicializar variáveis, criar primeira peça, iniciar intervalo de queda)
 }
 
-// Function that makes the Tetrominoes move down
-function moveDown() {
-    currentPosition += width;
-    draw();
-    freeze();
-    checkForGameOver();
-    showScore();
-    showLevel();
+// Atualização do jogo em cada intervalo
+function atualizar() {
+    // ... (Mover a peça para baixo, verificar colisões e linhas completas)
 }
 
-// Freeze function
-function freeze() {
-    if (currentPosition + currentRotation * width + width * height >= width * height) {
-        currentRotation = 0;
-        currentPosition = currentPosition - width * height;
-        draw();
-        addBlockToGrid();
-        checkForGameOver();
-        getNewPiece();
-    }
-}
-
-// Show Score
-function showScore() {
-    scoreDisplay.innerHTML = `Score: ${score}`;
-}
-
-// Show Level
-function showLevel() {
-    levelDisplay.innerHTML = `Level: ${level}`;
-}
-
-// Add a block to the grid
-function addBlockTo
+// Controle de eventos de teclado (setas, espaço)
+document.addEventListener('keydown', function(e) {
+    // ... (Implementar ações para cada tecla pressionada)
+});
