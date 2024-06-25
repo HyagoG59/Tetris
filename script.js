@@ -74,4 +74,4 @@ function gameOver() {
     alert('Game Over! Pontuação final: ' + pontuacao);
 }
 
-function iniciarJogo
+function iniciarJogo(){}
