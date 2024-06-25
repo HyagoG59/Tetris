@@ -24,7 +24,7 @@ let score = 0;
 // Inicialização do jogo
 startGame();
 
-function startGame() {
+function startGame(Iniciar) {
     // ... (Inicializar variáveis, criar primeira peça, iniciar intervalo de queda)
 }
 
