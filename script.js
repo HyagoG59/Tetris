@@ -74,4 +74,28 @@ function gameOver() {
     alert('Game Over! Pontuação final: ' + pontuacao);
 }
 
-function iniciarJogo(){}
+function iniciarJogo() {
+    // Definir intervalo de tempo para atualizar o jogo
+    jogoIntervalo = setInterval(atualizar, 100);
+
+    // Gerar comida inicial
+    gerarComida();
+
+    // Adicionar evento de teclado para controlar a cobra
+    document.addEventListener('keydown', function(evento) {
+        switch (evento.key) {
+            case 'ArrowUp':
+                direcao = 'cima';
+                break;
+            case 'ArrowDown':
+                direcao = 'baixo';
+                break;
+            case 'ArrowLeft':
+                direcao = 'esquerda';
+                break;
+            case 'ArrowRight':
+                direcao = 'direita';
+                break;
+        }
+    });
+}
