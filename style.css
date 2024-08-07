@@ -1,16 +1,14 @@
-#jogo {
-    background-color: #f1cdcd;
-    border: 1px solid #ff8585;
+.game-container {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 10px;
+    border: 1px solid black;
+    padding: 10px;
 }
 
-.cobra {
-    background-color: #000;
-    width: 10px;
-    height: 10px;
-}
-
-.comida {
-    background-color: #ff0000;
-    width: 10px;
-    height: 10px;
+.cell {
+    font-size: 30px;
+    text-align: center;
+    line-height: 100px;
+    border: 1px solid black;
 }

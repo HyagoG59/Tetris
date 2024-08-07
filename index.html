@@ -1,19 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake Game</title>
+    <title>Jogo da Velha</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Snake Game</h1>
-    <canvas id="jogo" width="400" height="400"></canvas>
-
+    <div class="game-container">
+        <div class="cell" data-cell-index="0"></div>
+        <div class="cell" data-cell-index="1"></div>
+        </div>
+    <div class="result"></div>
     <script src="script.js"></script>
-
-    <script>
-        iniciarJogo();
-    </script>
-    </body>
+</body>
 </html>
